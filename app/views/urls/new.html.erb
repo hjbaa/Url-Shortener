@@ -1,0 +1,10 @@
+<div class = "centerFlex">
+  <form action="<%= urls_url %>" method="post">
+    <input name='authenticity_token' value='<%=form_authenticity_token %>' type='hidden'>
+
+    <label for="urls-url" class="form-label">Введите Url для укорачивания</label>
+    <input type="text" class="form-control text_input" id="urls-url" name="url">
+    <br/>
+    <div style="text-align: center;"><button type="submit" class="btn btn-primary">Укоротить</button></div>
+  </form>
+</div>

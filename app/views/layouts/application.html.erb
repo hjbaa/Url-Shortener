@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UrlShortener</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+        .my-primary {
+            background-color: #00006a;
+            color: white;
+        }
+
+        .centered {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            position: relative;
+            margin: auto;
+        }
+
+        .centerFlex {
+            background-color: mistyrose;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .text_input {
+            width: 100%;
+        }
+    </style>
+    <script>
+        function copyToClipboard(elementId) {
+            let copyText = document.getElementById(elementId).innerText;
+            console.log(copyText.innerText);
+            navigator.clipboard.writeText(copyText)
+            alert("Copied the text: " + copyText);
+        }
+    </script>
+  </head>
+
+  <body>
+    <header class = "my-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark my-primary">
+        <a class="navbar-brand" href="<%=root_path%>">Зачетная работа</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<%=url_path('123')%>">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Link</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <%= yield %>
+    </main>
+  </body>
+</html>
