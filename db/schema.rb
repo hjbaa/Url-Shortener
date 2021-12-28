@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_234639) do
+ActiveRecord::Schema.define(version: 2021_12_28_012426) do
 
   create_table "urls", force: :cascade do |t|
     t.string "protocol", default: "https://"
@@ -30,7 +30,9 @@ ActiveRecord::Schema.define(version: 2021_12_27_234639) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "remember_token_digest"
+    t.integer "role", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["role"], name: "index_users_on_role"
   end
 
   add_foreign_key "urls", "users"

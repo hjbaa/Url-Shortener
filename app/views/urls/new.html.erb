@@ -1,10 +1,24 @@
-<div class = "centerFlex">
-  <form action="<%= urls_url %>" method="post">
-    <input name='authenticity_token' value='<%=form_authenticity_token %>' type='hidden'>
+<!--<div class = "centerFlex">-->
+<!--  <form action="<%#= urls_url %>" method="post">-->
+<!--    <input name='authenticity_token' value='<%#=form_authenticity_token %>' type='hidden'>-->
 
-    <label for="urls-url" class="form-label">Введите Url для укорачивания</label>
-    <input type="text" class="form-control text_input" id="urls-url" name="url">
-    <br/>
-    <div style="text-align: center;"><button type="submit" class="btn btn-primary">Укоротить</button></div>
-  </form>
-</div>
+<!--    <label for="urls-url" class="form-label">Введите Url для укорачивания</label>-->
+<!--    <input type="text" class="form-control text_input" id="urls-url" name="url">-->
+<!--    <br/>-->
+<!--    <div style="text-align: center;"><button type="submit" class="btn btn-primary">Укоротить</button></div>-->
+<!--  </form>-->
+<!--</div>-->
+
+<%= form_with model: @url do |f| %>
+  <div class="mb-3 row">
+    <div class="col-sm-3 col-form-label display-1">
+      <%= f.label :url %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_field :url, placeholder: 'https://example.com', class: 'form-control form-control-lg' %>
+    </div>
+  </div>
+
+  <%= f.submit "Get short url!", class: 'btn btn-primary btn-lg' %>
+<% end %>

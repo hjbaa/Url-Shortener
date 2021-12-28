@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create edit update show]
 
   namespace :admin do
-    resources :users, only: %i[index]
+    resources :users, only: %i[index create edit update destroy]
   end
 
   get '/:key', to: 'urls#redirect'

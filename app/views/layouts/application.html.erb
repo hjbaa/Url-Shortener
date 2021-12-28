@@ -45,15 +45,18 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><%= nav_tab 'Home', root_path, class: 'nav-link px-2'%></li>
+          <% if policy([:admin, :user]).index? %>
+            <li><%= nav_tab 'Администрирование', admin_users_path, class: 'nav-link px-2' %></li>
+          <% end %>
         </ul>
 
         <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
           <% if user_signed_in? %>
-            <button onclick="myFunction()" class="dropbtn"> <%=current_user.decorate.name_or_email%></button>
+            <button onclick="myFunction()" class="dropbtn"> <%= current_user.decorate.name_or_email%></button>
             <div id="myDropdown" class="dropdown-content">
               <%= button_to 'Personal Info', user_path(current_user), class: 'btn', method: :get %>
               <%= button_to 'Edit profile', edit_user_path(current_user), class: 'btn', method: :get%>
-              <%= button_to 'Log Out', session_path, class: "btn btn-danger m-3", method: :delete%>
+              <%= button_to 'Log Out', session_path, class: "btn btn-danger w-100", method: :delete%>
               <%#= link_to 'Log Out', session_path, method: :delete%>
               <%#= button_to 'Edit profile', edit_user_path(current_user)%>
             </div>

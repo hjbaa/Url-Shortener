@@ -8,8 +8,9 @@ class UrlsController < ApplicationController
 
   def create
     destroy_expired_urls if Url.count.positive?
+
     begin
-      proto, domain = url_parsing(params[:url])
+      proto, domain = url_parsing(params[:url][:url])
     rescue RuntimeError
       flash[:error] = 'Invalid input for URL!'
       redirect_to root_url, status: '400 Bad Request'

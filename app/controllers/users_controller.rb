@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the app, #{current_user.name_or_email}!"
+      flash[:success] = "Welcome to the app, #{current_user.decorate.name_or_email}!"
       redirect_to root_path
     else
       render :new
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   private
 
   def set_user!
-    @user = User.find params[:id]
+    @user = User.find(params[:id])
   end
 
   def user_params
