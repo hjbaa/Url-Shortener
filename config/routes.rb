@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: %i[index create edit update destroy]
+    resources :urls, only: %i[index create destroy]
   end
 
   get '/:key', to: 'urls#redirect'

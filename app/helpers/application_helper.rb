@@ -17,8 +17,8 @@ module ApplicationHelper
     render partial: 'shared/menu', locals: { current_page: current_page }
   end
 
-  def full_title(page_title = "")
-    base_title = "UrlShortener"
+  def full_title(page_title = '')
+    base_title = 'UrlShortener'
     if page_title.present?
       "#{page_title} | #{base_title}"
     else

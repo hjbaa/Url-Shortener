@@ -44,5 +44,13 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
 end
 
+group :test do
+  gem 'capybara'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

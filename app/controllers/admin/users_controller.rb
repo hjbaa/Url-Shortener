@@ -5,7 +5,6 @@ module Admin
     before_action :require_authentication
     before_action :set_user!, only: %i[edit update destroy]
     before_action :authorize_user!
-    after_action :verify_authorized
 
     def index
       @users = User.order(created_at: :desc)
