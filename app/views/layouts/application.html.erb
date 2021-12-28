@@ -5,35 +5,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <style>
-        .my-primary {
-            background-color: #00006a;
-            color: white;
-        }
 
-        .centered {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-
-            position: relative;
-            margin: auto;
-        }
-
-        .centerFlex {
-            background-color: mistyrose;
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .text_input {
-            width: 100%;
-        }
-    </style>
     <script>
         function copyToClipboard(elementId) {
             let copyText = document.getElementById(elementId).innerText;
@@ -41,28 +18,59 @@
             navigator.clipboard.writeText(copyText)
             alert("Copied the text: " + copyText);
         }
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                let dropdowns = document.getElementsByClassName("dropdown-content");
+                let i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
     </script>
   </head>
 
   <body>
-    <header class = "my-primary">
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark my-primary">
-        <a class="navbar-brand" href="<%=root_path%>">Зачетная работа</a>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="<%=url_path('123')%>">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Link</a>
-          </li>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><%= nav_tab 'Home', root_path, class: 'nav-link px-2'%></li>
+        </ul>
+
+        <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+          <% if user_signed_in? %>
+            <button onclick="myFunction()" class="dropbtn"> <%=current_user.decorate.name_or_email%></button>
+            <div id="myDropdown" class="dropdown-content">
+              <%= button_to 'Personal Info', user_path(current_user), class: 'btn', method: :get %>
+              <%= button_to 'Edit profile', edit_user_path(current_user), class: 'btn', method: :get%>
+              <%= button_to 'Log Out', session_path, class: "btn btn-danger m-3", method: :delete%>
+              <%#= link_to 'Log Out', session_path, method: :delete%>
+              <%#= button_to 'Edit profile', edit_user_path(current_user)%>
+            </div>
+          <% else %>
+            <li><%= nav_tab 'Sign Up', new_user_path, class: 'nav-link px-2' %></li>
+            <li><%= nav_tab 'Log In', new_session_path, class: 'nav-link px-2'%></li>
+          <% end %>
         </ul>
       </nav>
-    </header>
+    </div>
+  </header>
+  <main class="container mt-3">
+    <% flash.each do |k, v| %>
+      <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
+    <% end %>
 
-    <main class="container">
-      <%= yield %>
-    </main>
+    <%= yield %>
+  </main>
   </body>
 </html>

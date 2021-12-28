@@ -1,0 +1,27 @@
+<% provide :page_title, "Your URLs" %>
+
+<h1 class="mb-4">Your URLs</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Key</th>
+    <th scope="col">Full URL</th>
+    <th scope="col">Created at</th>
+    <th scope="col">Updated at</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render @urls %>
+  <%#@urls.each do |url| %>
+<!--    <tr>-->
+<!--      <th scope="row"><%#= url.id %></th>-->
+<!--      <td><%#= url.key %></td>-->
+<!--      <td><%#= url.protocol + url.domain_path %></td>-->
+<!--      <td><%#= url.created_at %></td>-->
+<!--      <td><%#= url.updated_at %></td>-->
+<!--    </tr>-->
+  <%# end %>
+  </tbody>
+</table>
