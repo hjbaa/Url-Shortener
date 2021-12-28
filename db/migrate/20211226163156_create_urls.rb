@@ -4,7 +4,7 @@ class CreateUrls < ActiveRecord::Migration[6.1]
       t.string :protocol, default: 'https://'
       t.string :domain_path, null: false
       t.string :key, unique: true, null: false
-
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end

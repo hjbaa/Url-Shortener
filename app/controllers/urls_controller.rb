@@ -7,14 +7,24 @@ class UrlsController < ApplicationController
   end
 
   def create
-    destroy_expired_urls
-    proto, domain = url_parsing(params[:url])
-    key = generate_key
-    if proto.nil?
-      Url.create!(domain_path: domain, key: key)
-    else
-      Url.create!(protocol: proto, domain_path: domain, key: key)
+    destroy_expired_urls if Url.count.positive?
+
+    begin
+      proto, domain = url_parsing(params[:url][:url])
+    rescue RuntimeError
+      flash[:error] = 'Invalid input for URL!'
+      redirect_to root_url, status: '400 Bad Request'
+      return
     end
+
+    key = generate_key # TODO loop for checking if key already exists
+
+    if proto.nil?
+      Url.create!(domain_path: domain, key: key, user: current_user)
+    else
+      Url.create!(protocol: proto, domain_path: domain, key: key, user: current_user)
+    end
+
     @short_url = "#{root_url.gsub('http://', '')}#{key}"
   end
 
@@ -37,7 +47,7 @@ class UrlsController < ApplicationController
   end
 
   def destroy_expired_urls
-    Url.destroy_all.where(created_at < 1.hour.ago)
+    Url.where(created_at: 5.year.ago..1.hour.ago).destroy_all
   end
 
   def find_url
@@ -45,7 +55,9 @@ class UrlsController < ApplicationController
   end
 
   def url_parsing(full_url)
-    return [nil, full_url] if full_url.count('http://').zero?
+    raise 'Invalid input for url!' unless full_url =~ %r{^(https?:\/\/)?.*\..*$}
+
+    return [nil, full_url] unless full_url =~ %r{^https?://.*$}
 
     protocol = full_url.slice(0..full_url.index('/') + 1)
     domain_path = full_url.gsub(protocol, '')

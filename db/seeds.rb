@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+usr = User.new(password: 'KnighT@178', email: 'egor.skandakov@gmail.com', name: 'Egor', role: 1)
+usr.save!
+
+url = Url.new(key: 'abcd', domain_path: 'vk.com')
+url.save!
