@@ -1,0 +1,84 @@
+---
+ru:
+  activerecord:
+    attributes:
+      url:
+        protocol: Протокол
+        domain_path: Домен и путь
+        key: Ключ
+      user:
+        created_at: Создано в
+        email: Мыло
+        name: Имя
+        old_password: Старый пароль
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        updated_at: Обновлено в
+        role: Роль
+    models:
+      user: Пользователь
+      url: Юрл
+  admin:
+    users:
+      edit:
+        title: Изменить пользователя
+      destroy:
+        success: Пользователь удален!
+      update:
+        success: Пользователь обновлен!
+    urls:
+      destroy:
+        success: Юрл удален!
+
+
+  en: English
+  global:
+    user:
+      roles:
+        basic: Базовая
+        admin: Администратор
+    button:
+      delete: Удалить
+      edit: Изменить
+      show: Показать
+      submit: Отправить
+    dialog:
+      you_sure: Вы уверены?
+    flash:
+      already_signed_in: Вы уже вошли!
+      not_signed_in: Вы не вошли в систему!
+      not_authorized: Вы не авторизованы для этого действия!
+  menu:
+    edit_profile: Профиль
+    home: Домашняя страница
+    log_in: Войти
+    log_out: Выйти
+    sign_up: Зарегистрироваться
+    users: Пользователи
+  ru: Русский
+  sessions:
+    create:
+      invalid_creds: Некорретный логин/пароль!
+      success: И снова здравствуйте, %{name}!
+    destroy:
+      success: Заходите почаще!
+    new:
+      form:
+        email: Мыло
+        password: Пароль
+        remember_me: Запомнить меня
+        submit: Войти
+      title: Войти
+  users:
+    create:
+      success: Добро пожаловать, %{name}!
+    edit:
+      title: Изменить профиль
+    global:
+      forms:
+        register: Зарегистрироваться
+        save: Сохранить
+    new:
+      title: Регистрация
+    update:
+      success: Ваш профиль был успешно обновлен!

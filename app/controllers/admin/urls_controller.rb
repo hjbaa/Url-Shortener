@@ -12,7 +12,7 @@ module Admin
 
     def destroy
       @url.destroy
-      flash[:success] = 'success'
+      flash[:success] = 'Url successfully destroyed!'
       redirect_to admin_urls_path
     end
 
@@ -27,4 +27,3 @@ module Admin
     end
   end
 end
-

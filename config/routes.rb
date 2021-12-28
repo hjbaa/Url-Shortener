@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'urls#new'
   get '/urls/:key', to: 'urls#show', as: :url

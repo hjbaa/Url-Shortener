@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UrlsController < ApplicationController
   before_action :find_url, only: %i[show destroy redirect]
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_url_not_found
@@ -6,6 +8,7 @@ class UrlsController < ApplicationController
     @url = Url.new
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create
     destroy_expired_urls if Url.count.positive?
 
@@ -17,7 +20,10 @@ class UrlsController < ApplicationController
       return
     end
 
-    key = generate_key # TODO loop for checking if key already exists
+    key = generate_key
+    until Url.find_by_key(key).blank?
+      key = generate_key
+    end
 
     if proto.nil?
       Url.create!(domain_path: domain, key: key, user: current_user)
@@ -27,6 +33,7 @@ class UrlsController < ApplicationController
 
     @short_url = "#{root_url.gsub('http://', '')}#{key}"
   end
+  # rubocop:enable Metrics/AbcSize
 
   def destroy; end
 
@@ -55,7 +62,7 @@ class UrlsController < ApplicationController
   end
 
   def url_parsing(full_url)
-    raise 'Invalid input for url!' unless full_url =~ %r{^(https?:\/\/)?.*\..*$}
+    raise 'Invalid input for url!' unless full_url =~ %r{^(https?://)?.*\..*$}
 
     return [nil, full_url] unless full_url =~ %r{^https?://.*$}
 

@@ -1,2 +1,83 @@
+---
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      url:
+        protocol: protocol
+        domain_path: domain&path
+        key: key
+      user:
+        created_at: Created at
+        email: Email
+        name: Name
+        old_password: Old password
+        password: Password
+        password_confirmation: Password confirmation
+        updated_at: Updated at
+        role: Role
+    models:
+      user: user
+      url: url
+  admin:
+    users:
+      edit:
+        title: Edit user
+      destroy:
+        success: User deleted!
+      update:
+        success: User updated!
+      index:
+
+  en: English
+  global:
+    user:
+      roles:
+        basic: Basic
+        admin: Admin
+    button:
+      delete: Delete
+      edit: Edit
+      show: Show
+      submit: Submit
+    dialog:
+      you_sure: Are you sure?
+    flash:
+      already_signed_in: You are already signed in!
+      not_signed_in: You are not signed in!
+      not_authorized: You are not authorized to perform this action!
+  menu:
+    edit_profile: Profile
+    home: Home
+    log_in: Log In
+    log_out: Log out
+    questions: Questions
+    sign_up: Sign Up
+    users: Users
+  ru: Russian
+  sessions:
+    create:
+      invalid_creds: Incorrect email and/or password!
+      success: Welcome back, %{name}!
+    destroy:
+      success: See you later!
+    new:
+      form:
+        email: Email
+        password: Password
+        remember_me: Remember me
+        submit: Sign in!
+        forgot_password: I forgot my password
+      title: Log In
+  users:
+    create:
+      success: Welcome to the app, %{name}!
+    edit:
+      title: Edit profile
+    global:
+      forms:
+        register: Register
+        save: Save
+    new:
+      title: Registration
+    update:
+      success: Your profile was successfully updated!

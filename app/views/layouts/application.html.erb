@@ -22,7 +22,6 @@
             document.getElementById("myDropdown").classList.toggle("show");
         }
 
-        // Close the dropdown if the user clicks outside of it
         window.onclick = function(event) {
             if (!event.target.matches('.dropbtn')) {
                 let dropdowns = document.getElementsByClassName("dropdown-content");
@@ -55,13 +54,11 @@
 
         <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
           <% if user_signed_in? %>
-            <button onclick="myFunction()" class="dropbtn"> <%= current_user.decorate.name_or_email%></button>
+            <button onclick="myFunction()" class="dropbtn"> <%= current_user.decorate.name_or_email %></button>
             <div id="myDropdown" class="dropdown-content">
-              <%= button_to 'Personal Info', user_path(current_user), class: 'btn', method: :get %>
+              <%= button_to 'Your URLs', user_path(current_user), class: 'btn', method: :get %>
               <%= button_to 'Edit profile', edit_user_path(current_user), class: 'btn', method: :get%>
               <%= button_to 'Log Out', session_path, class: "btn btn-danger w-100", method: :delete%>
-              <%#= link_to 'Log Out', session_path, method: :delete%>
-              <%#= button_to 'Edit profile', edit_user_path(current_user)%>
             </div>
           <% else %>
             <li><%= nav_tab 'Sign Up', new_user_path, class: 'nav-link px-2' %></li>

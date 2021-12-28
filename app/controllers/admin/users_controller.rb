@@ -14,7 +14,7 @@ module Admin
 
     def update
       if @user.update user_params
-        flash[:success] = 'success'
+        flash[:success] = 'User successfully updated!'
         redirect_to admin_users_path
       else
         render :edit
@@ -23,7 +23,7 @@ module Admin
 
     def destroy
       @user.destroy
-      flash[:success] = 'success'
+      flash[:success] = 'User successfully destroyed!'
       redirect_to admin_users_path
     end
 
