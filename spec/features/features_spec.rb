@@ -1,5 +1,7 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
+require 'rails_helper'
+# rubocop:disable Metrics/BlockLength
 describe 'application' do
   before(:each) do
     User.delete_all
@@ -117,3 +119,4 @@ describe 'application' do
     expect(page.body).to include('User successfully updated!')
   end
 end
+# rubocop:enable Metrics/BlockLength

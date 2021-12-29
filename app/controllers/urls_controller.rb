@@ -21,9 +21,7 @@ class UrlsController < ApplicationController
     end
 
     key = generate_key
-    until Url.find_by_key(key).blank?
-      key = generate_key
-    end
+    key = generate_key until Url.find_by_key(key).blank?
 
     if proto.nil?
       Url.create!(domain_path: domain, key: key, user: current_user)
