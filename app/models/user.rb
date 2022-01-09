@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
   def digest(string)
     cost = if ActiveModel::SecurePassword
-                .min_cost
+              .min_cost
              BCrypt::Engine::MIN_COST
            else
              BCrypt::Engine.cost
@@ -50,7 +50,6 @@ class User < ApplicationRecord
   end
 
   def password_complexity
-    # Regexp extracted from https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
     return if password.blank? || password =~ /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/
 
     msg = 'complexity requirement not met. Length should be 8-70 characters and ' \

@@ -3,6 +3,7 @@
   <td><%= url.key %></td>
   <td><%= url.protocol + url.domain_path %></td>
   <td><%= url.created_at %></td>
+  <td><%= url.redirect_count %></td>
 <!--  <td><%#= url.user.name.nil? ? 'Guest' : url.user.name  %></td>-->
   <td>
     <%= link_to 'Delete', admin_url_path(url), class: 'btn btn-danger',

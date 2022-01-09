@@ -1,4 +1,8 @@
+# rubocop:disable Layout/EndOfLine
+
 # frozen_string_literal: true
+
+# rubocop:enable Layout/EndOfLine
 
 class ApplicationPolicy
   attr_reader :user, :record

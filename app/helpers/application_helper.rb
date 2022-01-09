@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def nav_tab(title, url, options = {})
     current_page = options.delete :current_page
