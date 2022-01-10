@@ -1,23 +1,30 @@
-<%= provide :main_menu do %>
+<header class="p-3 bg-dark text-white">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark my-primary">
 
-<header class = "my-primary">
-  <nav class="navbar navbar-expand-lg navbar-dark my-primary">
-    <a class="navbar-brand" href="<%=root_path%>">Зачетная работа</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="<%=url_path('123')%>">Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Link</a>
-      </li>
-      <li><%= nav_tab 'Sign Up', new_user_path, class: 'nav-link px-2'%></li>
-    </ul>
-<!--    <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">-->
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><%= nav_tab 'Home', root_path, class: 'nav-link px-2'%></li>
+        <% if policy([:admin, :user]).index? %>
+          <li><%= nav_tab 'Users (admin)', admin_users_path, class: 'nav-link px-2' %></li>
+        <% end %>
+        <% if policy([:admin, :user]).index? %>
+          <li><%= nav_tab 'URls (admin)', admin_urls_path, class: 'nav-link px-2' %></li>
+        <% end %>
+      </ul>
 
-<!--      <li><%#= nav_tab 'Sign Up', new_user_path, class: 'nav-link px-2'%></li>-->
-<!--    </ul>-->
-  </nav>
+      <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+        <% if user_signed_in? %>
+          <button onclick="myFunction()" class="dropbtn"> <%= current_user.decorate.name_or_email %></button>
+          <div id="myDropdown" class="dropdown-content">
+            <%= button_to 'Your URLs', user_path(current_user), class: 'btn', method: :get %>
+            <%= button_to 'Edit profile', edit_user_path(current_user), class: 'btn', method: :get%>
+            <%= button_to 'Log Out', session_path, class: "btn btn-danger w-100", method: :delete%>
+          </div>
+        <% else %>
+          <li><%= nav_tab 'Sign Up', new_user_path, class: 'nav-link px-2' %></li>
+          <li><%= nav_tab 'Log In', new_session_path, class: 'nav-link px-2'%></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
 </header>
-<% end %>
